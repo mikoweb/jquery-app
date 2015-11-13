@@ -16,7 +16,7 @@
     function callFromArray(arr, args) {
         var i;
         for (i = 0; i < arr.length; i++) {
-            if (arr[i] instanceof Function) {
+            if ($.isFunction(arr[i])) {
                 arr[i].apply(null, $.merge([], args));
             }
         }
@@ -155,7 +155,6 @@
                      * inicjalizacja szablonu
                      */
                     init: initialize,
-
                     /**
                      * Dodaj nowy element strony
                      * @param {Object} options
@@ -201,7 +200,7 @@
                      * @param {Function} func
                      */
                     ready: function (func) {
-                        if (func instanceof Function) {
+                        if ($.isFunction(func)) {
                             layoutEvents.ready.push(func);
                         }
                     },
@@ -209,7 +208,7 @@
                      * @param {Function} func
                      */
                     load: function (func) {
-                        if (func instanceof Function) {
+                        if ($.isFunction(func)) {
                             layoutEvents.load.push(func);
                         }
                     },
@@ -217,7 +216,7 @@
                      * @param {Function} func
                      */
                     resize: function (func) {
-                        if (func instanceof Function) {
+                        if ($.isFunction(func)) {
                             layoutEvents.resize.push(func);
                         }
                     },
@@ -225,7 +224,7 @@
                      * @param {Function} func
                      */
                     scroll: function (func) {
-                        if (func instanceof Function) {
+                        if ($.isFunction(func)) {
                             layoutEvents.scroll.push(func);
                         }
                     }
@@ -273,7 +272,7 @@
         }
     });
 
-    if (typeof define === 'function' && define.amd) {
+    if ($.isFunction(define) && define.amd) {
         define("jquery.app", ['jquery'], function ($) {
             return $.app;
         });
