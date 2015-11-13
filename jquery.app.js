@@ -1,15 +1,6 @@
-/*globals define*/
-/*
- * This file is part of the Joomla Rapid Framework
- *
- * website: www.vision-web.pl
- * (c) Rafał Mikołajun <rafal@vision-web.pl>
- */
-
 /**
  * Kontener aplikacji
  * @author Rafał Mikołajun <rafal@vision-web.pl>
- * @package Joomla Rapid Framework
  * @copyright 2014 Rafał Mikołajun
  * @license GPL v2
  */
@@ -56,7 +47,6 @@
 
                         return false;
                     },
-
                     /**
                      * Podaj wartość zmiennej globalnej
                      * @param {string} name
@@ -65,7 +55,6 @@
                     get: function(name) {
                         return globals[name];
                     },
-
                     /**
                      * Czy zmienna jest zadeklarowana
                      * @param {string} name
@@ -78,11 +67,6 @@
             }())
         }
     });
-
-    /*
-     * Tworzenie pustego obiektu do przechowywania kontrolerów routera.
-     */
-    $.app.define('controller', {});
 
     Object.defineProperties($.app, {
         /**
@@ -149,13 +133,6 @@
 
                         // window ready
                         $(window).load(function() {
-                            // Aktywuj iframe po załadowaniu
-                            $('iframe').each(function() {
-                                var $this = $(this);
-                                $this.css('display', 'block');
-                                $this.attr('src', $this.data('src'));
-                            });
-
                             callFromArray(layoutEvents.load, [$.app.theme]);
                         });
 
@@ -204,7 +181,6 @@
 
                         return false;
                     },
-
                     /**
                      * Czy element jest zdefiniowany
                      * @param {string} name
@@ -213,7 +189,6 @@
                     hasElement: function(name) {
                         return elements[name] !== undefined;
                     },
-
                     /**
                      * Podaj element o podanej nazwie
                      * @param {string} name
@@ -222,7 +197,6 @@
                     element: function (name) {
                         return elements[name];
                     },
-
                     /**
                      * @param {Function} func
                      */
@@ -231,7 +205,6 @@
                             layoutEvents.ready.push(func);
                         }
                     },
-
                     /**
                      * @param {Function} func
                      */
@@ -240,7 +213,6 @@
                             layoutEvents.load.push(func);
                         }
                     },
-
                     /**
                      * @param {Function} func
                      */
@@ -249,7 +221,6 @@
                             layoutEvents.resize.push(func);
                         }
                     },
-
                     /**
                      * @param {Function} func
                      */
@@ -285,7 +256,6 @@
                             }
                         }
                     },
-
                     /**
                      * Podaj tłumaczenie
                      * @param {string} text
