@@ -38,14 +38,15 @@
                      * @returns {boolean}
                      */
                     define: function(name, value) {
-                        if (globals[name] === undefined) {
-                            Object.defineProperty(globals, name, {
-                                value: value
-                            });
-                            return true;
+                        if (globals[name] !== undefined) {
+                            throw new Error('jQuery.app.define: property "' + name + '" was defined');
                         }
 
-                        return false;
+                        Object.defineProperty(globals, name, {
+                            value: value
+                        });
+
+                        return true;
                     },
                     /**
                      * Podaj wartość zmiennej globalnej
@@ -125,9 +126,10 @@
                  */
                 function initialize() {
                     if (!init) {
+                        buidListOfElements();
+
                         // document ready
                         $(document).ready(function() {
-                            buidListOfElements();
                             callFromArray(layoutEvents.ready, [$.app.theme]);
                         });
 
@@ -191,7 +193,7 @@
                     /**
                      * Podaj element o podanej nazwie
                      * @param {string} name
-                     * @returns {jQuery}
+                     * @returns {jQuery|undefined}
                      */
                     element: function (name) {
                         return elements[name];
@@ -249,8 +251,12 @@
                         var prop;
                         for (prop in strings) {
                             if (strings.hasOwnProperty(prop)
-                                && translations[prop] === undefined
-                                && typeof strings[prop] === 'string') {
+                                && typeof strings[prop] === 'string'
+                            ) {
+                                if (translations[prop] !== undefined) {
+                                    throw new Error('jQuery.app.trans: translation "' + prop + '" was defined');
+                                }
+
                                 translations[prop] = strings[prop];
                             }
                         }
@@ -272,7 +278,7 @@
         }
     });
 
-    if ($.isFunction(define) && define.amd) {
+    if (typeof define !== 'undefined' && $.isFunction(define) && define.amd) {
         define("jquery.app", ['jquery'], function ($) {
             return $.app;
         });
