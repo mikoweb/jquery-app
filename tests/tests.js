@@ -66,7 +66,8 @@
         });
 
         var done1 = assert.async();
-        $.app.theme.ready(function () {
+
+        $.app.theme.on('init', function () {
             var header = $('#header'),
                 page = $('#page');
 
@@ -77,17 +78,10 @@
             assert.ok($.app.theme.element('menu').is(header.find('.menu')), 'menu is ok');
             assert.ok($.app.theme.element('content').is(page.find('.content')), 'content is ok');
 
-            assert.ok(true, 'ready ok');
+            assert.ok(true, 'init ok');
             done1();
         });
 
-        var done2 = assert.async();
-        $.app.theme.ready(function () {
-            assert.ok(true, 'load ok');
-            done2();
-        });
-
         $.app.theme.init();
-        $.app.theme.registerListeners();
     });
 }(jQuery));
