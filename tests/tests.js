@@ -88,5 +88,6 @@
         });
 
         $.app.theme.init();
+        $.app.theme.registerListeners();
     });
 }(jQuery));
