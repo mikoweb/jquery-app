@@ -1,11 +1,14 @@
 {
     "name": "jquery-app",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "homepage": "https://github.com/mikoweb/jquery-app",
     "authors": [
         "Rafał Mikołajun <rafal@vision-web.pl>"
     ],
     "description": "Uniwersalny kontener aplikacji",
     "main": "jquery.app.js",
-    "license": "GPLv2"
+    "license": "LGPLv3",
+    "ignore": [
+        "tests"
+    ]
 }
